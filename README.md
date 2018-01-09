@@ -16,7 +16,7 @@ typing.js is very easy to use, it utilizes a chainable syntax style, which makes
 
 An empty `<div id="selector">` is requied. It is used to wrap the input text strings. The id selector is passed as the first parameter into the javascript init function `_$(selector, speed, initialDelay)` function.
 
-```
+```html
 <div id="selector"></div>
 ```
 
@@ -24,7 +24,7 @@ An empty `<div id="selector">` is requied. It is used to wrap the input text str
 
 Some default css rules is required. Copy and paste, or just reference the rules in the **typing.css**. Please note that, in typing.css, `#demo` is used as the id selector. Just replace with your own selector.
 
-```
+```css
 #demo .line,
 #demo span {
     height: 20px;
@@ -76,44 +76,52 @@ Some default css rules is required. Copy and paste, or just reference the rules 
 ### Javascript
 
 The init function is:
-```
+```javascript
 _$(selector, speed, initialDelay)
 ```
-- **selector**: the `#ID` of the target element in your html file.
-- **speed**: the global or initial speed, this value can be changed on-the-fly by using the `speed()` method. This value is in **millisecond**.
-- **initialDelay**: the delay before the typing animation (of the first string) starts. This value is in **millisecond**.
+- **selector**: the `#ID` of the target element in your html file **without #**.
+- **speed**: the global or initial speed, this value can be changed on-the-fly by using the `speed()` method.
+- **initialDelay**: the delay before the typing animation (of the first string) starts.
 
 
 ## How to Use Then
 
 There are five methods available, and they can be chained up.
 
-- `type(string, [option])`: it takes two parameters: `string` and `option`. `string` is the string to type, the starting or tailing blankspace will also be typed (Note: for formatting purpose, extra blankspace will be ignored). `option` specifies the css style of the `string`, its an object with css styles in key&value pairs. The keys should be identical to the keys in DOM element `style` property.
-```
-.type("Typing Javascript", { 
+- `type(string, [option])`: it takes two parameters: `string` and `option`. `string` is the string to type, the leading or tailing blankspace will also be typed (Note: for formatting purpose, extra blankspace will be ignored). `option` specifies the css style of the `string`, its an object with css styles in key&value pairs. The keys should be identical to the keys in DOM element `style` property.
+```javascript
+var string = "Typing Javascript";
+
+.type(string, { 
     fontWeight: "bold", 
     color: "black",
 });
 ```
 
 - `delete([string])`: it will delete the `string` or entire line if not specified. **Note:** `string` should be last couple or part of the strings you typed, whitespace will be included.
-```
-.delete(string);
+```javascript
+// if you typed "Typing Javascript" ealier
+var stringToRemove = "Javascript";
+
+// output will be "Typing "
+.delete(stringToRemove);
 ```
 
 - `lineBreak()`: start a new line.
-```
+```javascript
 .lineBreak();
 ```
 
 - `wait(time)`: pause the typing for a time interval. The `time` parameter is the time interval in **millisecond**.
-```
-.wait(time);
+```javascript
+// wait for 300ms
+.wait(300);
 ```
 
-- `speed(time)`: define the typing speed of following `type()` method, The `time` parameter is the speed in **millisecond**. Less is faster.
-```
-.speed(time);
+- `speed(time)`: define the typing speed of following `type()` method, The `time` parameter is the speed in **millisecond**.
+```javascript
+// typing speed is the time interval each string is typed. Less is faster.
+.speed(70);
 ```
 
 
@@ -123,7 +131,7 @@ This is a simple example including all the features.
 
 In a HTML file which you want to display this typing effect, create a empty div with the `id="demo"`.
 
-```
+```html
 <div id="demo"></div>
 ```
 
@@ -131,21 +139,24 @@ Copy and paste the CSS rules, in the `<style>` tag or in a seperate css file.
 
 Then, in the `<script></script>` tag, or in a seperate javascript file, paste in the following codes
 
-```
-_$("demo", 100, 800)
-    .type("Hello! ").wait(1000).speed(100)
-    .type("This is ").wait(300).speed(100)
-    .lineBreak()
-    .type("Typing Javascript", { 
-        fontWeight: "bold", 
-        color: "black",
-    }).speed(40)
-    .delete("Javascript").wait(1000).speed(200)
-    .type("JS", { 
-        fontWeight: "bold", 
-        color: "black",
-    }).wait(1000)
-    .lineBreak();
+```html
+<script src="typing.js"></script>
+<script>
+    _$("demo", 100, 800)
+        .type("Hello! ").wait(1000).speed(100)
+        .type("This is ").wait(300).speed(100)
+        .lineBreak()
+        .type("Typing Javascript", { 
+            fontWeight: "bold", 
+            color: "black",
+        }).speed(40)
+        .delete("Javascript").wait(1000).speed(200)
+        .type("JS", { 
+            fontWeight: "bold", 
+            color: "black",
+        }).wait(1000)
+        .lineBreak();
+</script>
 ```
 
 Run the HTML file and see the magic! :sparkles:
