@@ -4,9 +4,11 @@ A Mini Javascript Library for Creating a Typing Effect.
 
 Typing.js is very easy to use by utilizing a chainable style, which makes it very straight forward, ease to read and type on-the-fly.
 
+
 ### Dependency
 
 **None**. This is a standalone library, however, this library will be exposed to global as `typing` or its alias `_$`.
+
 
 ### Get start
 
@@ -17,6 +19,7 @@ _$(selector, speed, initialDelay)
 - **selector**: the `#ID` of the target element in your html file.
 - **speed**: the global or initial speed, this value can be changed on-the-fly by using the `speed()` method. This value is in **millisecond**.
 - **initialDelay**: the delay before the typing animation (of the first string) starts. This value is in **millisecond**.
+
 
 ### How to Use Then
 
@@ -50,7 +53,8 @@ There are five methods available, and they can be chained up.
 .speed(time);
 ```
 
-### Example
+
+### Full Example
 
 This is a simple example including all the features.
 
@@ -79,8 +83,9 @@ _$("demo", 100, 800)
     .lineBreak();
 ```
 
-Run the html file and see the magic! :sparkles
+Run the html file and see the magic! :sparkles:
 (Or, check in the index.html file in this repo, it contains the styling that will give a better look and feel.)
+
 
 ### Author
 Yao Tong - [Github](https://github.com/yat529)
